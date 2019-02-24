@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+	helper_method :sorting_class
 	@sorting_column = nil
 
   def movie_params
