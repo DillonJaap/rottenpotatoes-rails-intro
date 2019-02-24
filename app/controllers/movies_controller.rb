@@ -16,7 +16,11 @@ class MoviesController < ApplicationController
   end
 
   def sort_column
+	if params[:column] == nil
 		"title"
+	else
+		params[:column]
+	end
   end
 
   def new
