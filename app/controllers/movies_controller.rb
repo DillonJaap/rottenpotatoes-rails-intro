@@ -16,11 +16,7 @@ class MoviesController < ApplicationController
   end
 
   def sort_column
-	if :column == nil
 		"title"
-	else
-		:column
-	end
   end
 
   def new
