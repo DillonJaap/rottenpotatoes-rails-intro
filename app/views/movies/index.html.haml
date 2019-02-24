@@ -5,7 +5,7 @@
   %thead
     %tr
       %th= link_to "Movie Title", movies_path, :column => "title" 
-      %th= link_to "Rating", movies_path, :column => "rating" 
+      %th= link_to "Rating", {:column => "rating"}
       %th Release Date
       %th More Info
   %tbody
