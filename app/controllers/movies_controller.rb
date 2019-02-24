@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
 	helper_method :sort_column, :sort_direction
 
   def movie_params
-    params.require(:movie).permit(:title, :rating, :description, :release_date)
+    params.require(:movie).permit(:title, :rating, :description, :release_date, :column)
   end
 
   def show
