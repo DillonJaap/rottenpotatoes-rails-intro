@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
     @movies = Movie.order(sort_column sort_direction)
   end
 
-  def sort_column
+  def sort_direction
 	if params[:direction] == nil
 		"ASC"
 	elsif params[:direction] == "ASC"
