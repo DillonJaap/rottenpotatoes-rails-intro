@@ -12,7 +12,15 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.order(:column)
+    @movies = Movie.order(sort_column)
+  end
+
+  def sort_column
+	if :column == nil
+		"title"
+	else
+		:column
+	end
   end
 
   def new
