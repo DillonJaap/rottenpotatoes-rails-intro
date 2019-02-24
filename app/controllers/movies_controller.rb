@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-	helper_method :sort_column, :sort_direction
+	@sorting_column = nil
 
   def movie_params
     params.require(:movie).permit(:title, :rating, :description, :release_date, :column)
@@ -12,19 +12,25 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.order("#{sort_column} DESC")
+    @movies = Movie.order("#{sort_column} ASC")
   end
 
   def sort_column
 	if params[:column] == nil
-		"title"
+		@sorting_column = "title"
+		return "title"
 	else
-		params[:column]
+		@sorting_column = params[:column]
+		return params[:column]
 	end
   end
 
-  def sort_dir
-  	
+  def sorting_class
+	  if @sort_column == :column
+		  "hilite"
+	  else
+		  "nothl"
+	  end
   end
 
   def new
