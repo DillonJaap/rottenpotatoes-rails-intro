@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.order("#{sort_column} #{sort_direction}")
+    @movies = Movie.order("#{sort_column}")
   end
 
   def sort_direction
