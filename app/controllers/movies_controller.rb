@@ -6,6 +6,14 @@ class MoviesController < ApplicationController
     params.require(:movie).permit(:title, :rating, :description, :release_date, :column)
   end
 
+  def hilite_class
+	  if @sorting_by == params[:column]
+		  @class = "hilite"
+	  else
+		  nil
+	  end
+  end
+
   def show
     id = params[:id] # retrieve movie ID from URI route
     @movie = Movie.find(id) # look up movie by unique ID
@@ -26,13 +34,6 @@ class MoviesController < ApplicationController
 	end
   end
 
-  def hilite_class
-	  if @sorting_by == params[:column]
-		  "hilite"
-	  else
-		  nil
-	  end
-  end
 
   def new
     # default: render 'new' template
