@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
 	@all_ratings = Movie.ratings
 
 	if params[:ratings].nil?
-		ratings_keys = @all_ratings.keys
+		ratings_keys = @all_ratings
 	else
 		ratings_keys = params[:ratings].keys
 	end
