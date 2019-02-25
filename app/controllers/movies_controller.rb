@@ -7,11 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def hilite_class
-	  if @sorting_by == params[:sort_by]
 		  "hilite"
-	  else
-		  nil
-	  end
   end
 
   def show
@@ -24,11 +20,11 @@ class MoviesController < ApplicationController
     @movies = Movie.order("#{sort_column} ASC")
   end
 
-  def sort_column
+  def sort_by
 	if params[:sort_by] == nil
-		return "title"
+		@sorting_by = "title"
 	else
-		return params[:sort_by]
+		@sorting_by = params[:sort_by]
 	end
   end
 
