@@ -29,7 +29,7 @@ class MoviesController < ApplicationController
 		@ratings_keys = params[:ratings].keys
 	end
 
-	@movies = Movie.where(rating: ratings_keys).order("#{sort_by} ASC")
+	@movies = Movie.where(rating: @ratings_keys).order("#{sort_by} ASC")
   end
 
   def sort_by
