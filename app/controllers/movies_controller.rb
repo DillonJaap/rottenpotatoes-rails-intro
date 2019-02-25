@@ -3,11 +3,11 @@ class MoviesController < ApplicationController
 	@sorting_by = nil
 
   def movie_params
-    params.require(:movie).permit(:title, :rating, :description, :release_date, :sort_by)
+    params.require(:movie).permit(:title, :rating, :description, :release_date, :sort_by, :html)
   end
 
   def hilite_class
-	  return "hilite"
+	  "hilite"
   end
 
   def show
