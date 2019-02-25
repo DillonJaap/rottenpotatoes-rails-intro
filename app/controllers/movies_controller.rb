@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
 
   def hilite_class
 	  if @sorting_by == params[:column]
-		  @class = "hilite"
+		  "hilite"
 	  else
 		  nil
 	  end
