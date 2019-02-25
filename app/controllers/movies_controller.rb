@@ -7,7 +7,11 @@ class MoviesController < ApplicationController
   end
 
   def hilite_class
-	  "hilite"
+	  if param[:sort_by] == @sorting_by
+		  "hilite"
+	  else
+		  nil
+	  end
   end
 
   def show
