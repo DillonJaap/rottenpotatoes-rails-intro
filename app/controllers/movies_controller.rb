@@ -1,6 +1,5 @@
 class MoviesController < ApplicationController
 	helper_method :hilite_class
-	@sorting_by = nil
 
   def movie_params
     params.require(:movie).permit(:title, :rating, :description, :release_date, :sort_by)
@@ -21,7 +20,9 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.order("#{sort_by} ASC")
+	@sorting_by = nil
+	@all_ratings = Movie.ratings
+	@movies = Movie.all.order("#{sort_by} ASC")
   end
 
   def sort_by
