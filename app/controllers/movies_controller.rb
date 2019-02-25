@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def hilite_class
-		  "hilite"
+	  return "hilite"
   end
 
   def show
