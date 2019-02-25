@@ -22,10 +22,8 @@ class MoviesController < ApplicationController
 
   def sort_by
 	if params[:sort_by] == nil
-		@sorting_by = "title"
 		"title"
 	else
-		@sorting_by = params[:sort_by]
 		params[:sort_by]
 	end
   end
