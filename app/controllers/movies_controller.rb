@@ -17,15 +17,16 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.order("#{sort_column} ASC")
+    @movies = Movie.order("#{sort_by} ASC")
   end
 
   def sort_by
 	if params[:sort_by] == nil
-		"title"
+		@sorting_by = "title"
 	else
-		params[:sort_by]
+		@sorting_by = params[:sort_by]
 	end
+	return @sorting_by
   end
 
 
