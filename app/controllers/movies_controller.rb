@@ -27,7 +27,11 @@ class MoviesController < ApplicationController
   end
 
   def sorting_class
+	  if @sort_column == params[:column]
 		  "hilite"
+	  else
+		  "nothl"
+	  end
   end
 
   def new
