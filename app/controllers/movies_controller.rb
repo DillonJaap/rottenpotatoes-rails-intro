@@ -22,7 +22,14 @@ class MoviesController < ApplicationController
   def index
 	@sorting_by = nil
 	@all_ratings = Movie.ratings
-	@movies = Movie.all.order("#{sort_by} ASC")
+
+	if ratings_keys == nil
+		ratings_keys = @all_ratings
+	else
+		ratings_keys = params[:ratings].keys
+	end
+
+	@movies = Movie.where(rating: ratings_keys).order("#{sort_by} ASC")
   end
 
   def sort_by
