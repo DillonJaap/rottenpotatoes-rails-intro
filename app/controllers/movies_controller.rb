@@ -30,7 +30,7 @@ class MoviesController < ApplicationController
 	  if @sort_column == params[:column]
 		  "hilite"
 	  else
-		  "nothl"
+		  nil
 	  end
   end
 
