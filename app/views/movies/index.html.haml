@@ -5,8 +5,8 @@
   %thead
     %tr
       %th= link_to "Movie Title", movies_path, sort_by: "title", class: "hilite"
-      %th= link_to "Rating", :sort_by => "rating", :class => hilite_class
-      %th= link_to "Release_Date", :sort_by => "release_date", :class => hilite_class
+      %th Ratings
+      %th= link_to "Release_Date", movies_path, sort_by: "release_date", class: hilite_class
       %th More Info
   %tbody
     - @movies.each do |movie|
