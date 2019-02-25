@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
 	  if param[:sort_by] == @sorting_by
 		  "hilite"
 	  else
-		 "nothl" 
+		 "nothilite" 
 	  end
   end
 
