@@ -27,11 +27,7 @@ class MoviesController < ApplicationController
   end
 
   def sorting_class
-	  if @sort_column == :column
 		  "hilite"
-	  else
-		  "nothl"
-	  end
   end
 
   def new
