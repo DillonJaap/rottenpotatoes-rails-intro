@@ -26,6 +26,7 @@ class MoviesController < ApplicationController
 	else
 		@sorting_by = params[:sort_by]
 	end
+	return @sorting_by
   end
 
 
