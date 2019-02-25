@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
-	helper_method :sorting_class
-	@sorting_column = nil
+	helper_method :hilite_class
+	@sorting_by = nil
 
   def movie_params
     params.require(:movie).permit(:title, :rating, :description, :release_date, :column)
@@ -18,16 +18,16 @@ class MoviesController < ApplicationController
 
   def sort_column
 	if params[:column] == nil
-		@sorting_column = "title"
+		@sorting_by = "title"
 		return "title"
 	else
-		@sorting_column = params[:column]
+		@sorting_by = params[:column]
 		return params[:column]
 	end
   end
 
-  def sorting_class
-	  if @sort_column == params[:column]
+  def hilite_class
+	  if @sorting_by == params[:column]
 		  "hilite"
 	  else
 		  nil
