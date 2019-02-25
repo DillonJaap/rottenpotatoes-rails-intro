@@ -39,6 +39,9 @@ table#movies {
   width: 100%;
   border-bottom: 2px solid black;
 }
+table#movies th.hilite {
+  background-color: yellow !important;
+}
 table#movies th {
   border: 2px solid white;
   font-weight: bold;
@@ -58,7 +61,4 @@ form label {
   line-height: 25px;
   font-weight: bold;
   color: maroon;
-}
-table#movies th.hilite {
-  background-color: yellow !important;
 }
