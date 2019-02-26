@@ -30,11 +30,7 @@ class MoviesController < ApplicationController
 
 	session[:ratings] = session[:ratings] || {'G'=>'','PG'=>'','PG-13'=>'','R'=>''}
 
-	if params[:ratings].nil?
-		@t_param = Hash.new()
-	else
-		@t_param = params[:ratings] || session[:ratings]
-	end
+	@t_param = params[:ratings] || session[:ratings]
 
 
 	session[:sort] = @sort
