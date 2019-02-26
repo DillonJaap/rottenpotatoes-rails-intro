@@ -22,11 +22,7 @@ class MoviesController < ApplicationController
   def index
 	@all_ratings = Movie.ratings
 
-	if params[:sort].nil?
-		@sort = "title"
-	else
 		@sort = params[:sort] || session[:sort]
-	end
 
 	session[:ratings] = session[:ratings] || {'G'=>'','PG'=>'','PG-13'=>'','R'=>''}
 
