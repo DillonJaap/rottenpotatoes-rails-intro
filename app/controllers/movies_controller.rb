@@ -39,7 +39,7 @@ class MoviesController < ApplicationController
 
 	session[:sort] = @sort
 	session[:ratings] = @t_param
-	@movies = Movie.where(rating: session[:ratings]).order("#{@sort} ASC")
+	@movies = Movie.where(rating: session[:ratings].keys).order("#{@sort} ASC")
 
 	if (params[:sort].nil? && !(session[:sort].nil?) ||
 			params[:ratings].nil? && !(session[:ratings].nil?))
