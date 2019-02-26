@@ -33,7 +33,7 @@ class MoviesController < ApplicationController
 	if params[:ratings].nil?
 		@ratings_keys = @all_ratings
 	else
-		@ratings_keys = params[:ratings].keys || session[:ratings]
+		@ratings_keys = params[:ratings] || session[:ratings]
 	end
 
 
