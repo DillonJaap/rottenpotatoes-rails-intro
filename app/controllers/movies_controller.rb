@@ -2,11 +2,11 @@ class MoviesController < ApplicationController
 	helper_method :hilite_class
 
   def movie_params
-    params.require(:movie).permit(:title, :rating, :description, :release_date, :sort_by)
+    params.require(:movie).permit(:title, :rating, :description, :release_date, :sort)
   end
 
   def hilite_class
-	  if param[:sort_by] == @sorting_by
+	  if param[:sort] == @sorting_by
 		  "hilite"
 	  else
 		 "nothilite" 
@@ -20,25 +20,33 @@ class MoviesController < ApplicationController
   end
 
   def index
-	@sorting_by = nil
 	@all_ratings = Movie.ratings
+
+	if params[:sort].nil?
+		@sorting_by = "title"
+	else
+		@sorting_by = params[:sort] || session[:sort]
+	end
+
+	session[:ratings] = session[:ratings] || @all_ratings
 
 	if params[:ratings].nil?
 		@ratings_keys = @all_ratings
 	else
-		@ratings_keys = params[:ratings].keys
+		@ratings_keys = params[:ratings].keys || session[:ratings]
 	end
 
-	@movies = Movie.where(rating: @ratings_keys).order("#{sort_by} ASC")
-  end
 
-  def sort_by
-	if params[:sort_by] == nil
-		@sorting_by = "title"
-	else
-		@sorting_by = params[:sort_by]
+	session[:sort] = @sorting_by
+	session[:ratings] = @ratings_keys
+	@movies = Movie.where(rating: @ratings_keys).order("#{sorting_by} ASC")
+
+	if (params[:sort].nil? && !(session[:sort].nil?) ||
+			params[:ratings].nil? && !(session[:ratings].nil?))
+		flash.keep
+		redirect_to movies_path(sort: session[:sort],ratings: session[:ratings])
 	end
-	return @sorting_by
+
   end
 
 
