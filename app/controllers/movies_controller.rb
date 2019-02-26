@@ -6,7 +6,7 @@ class MoviesController < ApplicationController
   end
 
   def hilite_class
-	  if param[:sort] == @sorting_by
+	  if param[:sort] == @sort
 		  "hilite"
 	  else
 		 "nothilite" 
@@ -23,23 +23,23 @@ class MoviesController < ApplicationController
 	@all_ratings = Movie.ratings
 
 	if params[:sort].nil?
-		@sorting_by = "title"
+		@sort = "title"
 	else
-		@sorting_by = params[:sort] || session[:sort]
+		@sort = params[:sort] || session[:sort]
 	end
 
-	session[:ratings] = session[:ratings] || @all_ratings
+	session[:ratings] = session[:ratings] || {'G'=>'','PG'=>'','PG-13'=>'','R'=>''}
 
 	if params[:ratings].nil?
-		@ratings_keys = []
+		@t_param = Hash.new()
 	else
-		@ratings_keys = params[:ratings] || session[:ratings]
+		@t_param = params[:ratings] || session[:ratings]
 	end
 
 
-	session[:sort] = @sorting_by
-	session[:ratings] = @ratings_keys
-	@movies = Movie.where(rating: @ratings_keys).order("#{@sorting_by} ASC")
+	session[:sort] = @sort
+	session[:ratings] = @t_param
+	@movies = Movie.where(rating: session[:ratings]).order("#{@sort} ASC")
 
 	if (params[:sort].nil? && !(session[:sort].nil?) ||
 			params[:ratings].nil? && !(session[:ratings].nil?))
