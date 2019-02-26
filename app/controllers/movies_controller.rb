@@ -20,7 +20,6 @@ class MoviesController < ApplicationController
   end
 
   def index
-	  byebug
 	@all_ratings = Movie.ratings
 
 	if params[:sort].nil?
@@ -32,7 +31,7 @@ class MoviesController < ApplicationController
 	session[:ratings] = session[:ratings] || @all_ratings
 
 	if params[:ratings].nil?
-		@ratings_keys = @all_ratings
+		@ratings_keys = Arrray.new() 
 	else
 		@ratings_keys = params[:ratings] || session[:ratings]
 	end
