@@ -20,6 +20,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+	  byebug
 	@all_ratings = Movie.ratings
 
 	if params[:sort].nil?
