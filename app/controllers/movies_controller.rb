@@ -24,6 +24,10 @@ class MoviesController < ApplicationController
 
 	@sort = params[:sort] || session[:sort] || "title"
 
+  if params[:ratings].is_a?(Hash)
+    params[:ratings] = params[:ratings].keys
+  end
+
 	if params[:ratings]
 		@filters = params[:ratings] || session[:ratings] ||  @all_ratings
 	else
@@ -33,7 +37,7 @@ class MoviesController < ApplicationController
 	session[:sort] = @sort
 	session[:ratings] = @filters
 
-	@movies = Movie.where(rating: @filters.keys).order("#{@sort} ASC")
+	@movies = Movie.where(rating: @filters).order("#{@sort} ASC")
 	if(params[:sort].nil? and !(session[:sort].nil?)) or (params[:ratings].nil? and !(session[:ratings].nil?))
 		flash.keep
 		redirect_to movies_path(sort: session[:sort], ratings: session[:ratings])
